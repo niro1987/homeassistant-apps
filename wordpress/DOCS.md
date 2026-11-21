@@ -13,10 +13,15 @@ before starting WordPress.
 ## Edit `wp-config.php`
 
 The app creates `wp-config.php` on its first start and stores it in the app's
-configuration folder. In Samba, SSH, or a file editor app, open
-`app_configs/local_wordpress/wp-config.php`. Adjust the configuration there,
-then restart WordPress for changes to take effect. On startup, the local file
-is copied into the WordPress site.
+configuration folder. The folder is separate from Home Assistant's `/config`
+directory and is not under `/config/www`. Use Samba or SSH to open
+`app_configs/<app-id>/wp-config.php`; for example, the app ID in Supervisor
+logs may appear as `16aa57ea_wordpress`. Adjust the configuration there, then
+restart WordPress for changes to take effect. On startup, the local file is
+copied into the WordPress site.
+
+WordPress core and site files are stored separately in the app's private
+persistent data, not in Home Assistant's `/config` folder.
 
 Database values configured in the app are read from environment variables by
 the default config file. You can also edit the PHP file directly to add custom
