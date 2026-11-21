@@ -1,0 +1,16 @@
+configuration:
+  WORDPRESS_DB_HOST:
+    name: Database host
+    description: Hostname and optional port of the MariaDB server.
+  WORDPRESS_DB_NAME:
+    name: Database name
+    description: Name of the database created for WordPress.
+  WORDPRESS_DB_USER:
+    name: Database username
+    description: MariaDB user with access to the WordPress database.
+  WORDPRESS_DB_PASSWORD:
+    name: Database password
+    description: Password for the MariaDB user.
+  WORDPRESS_TABLE_PREFIX:
+    name: Table prefix
+    description: Prefix for the WordPress database tables.

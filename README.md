@@ -1,6 +1,6 @@
 # Home Assistant Apps by Niels
 
-This repository can be used as a "blueprint" for app development to help you get started.
+This repository contains Home Assistant apps and an example blueprint for app development.
 
 Apps documentation: <https://contributors.home-assistant.io/apps/>
 
@@ -8,7 +8,14 @@ Apps documentation: <https://contributors.home-assistant.io/apps/>
 
 ## Apps
 
-This repository contains the following apps
+This repository contains the following apps.
+
+### [WordPress](./wordpress)
+
+![Supports aarch64 Architecture][aarch64-shield]
+![Supports amd64 Architecture][amd64-shield]
+
+_Self-hosted WordPress with a persistent, locally editable `wp-config.php`._
 
 ### [Example app](./example)
 

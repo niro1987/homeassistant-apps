@@ -1,0 +1,37 @@
+#!/bin/sh
+set -eu
+
+config_file=/config/wp-config.php
+runtime_config_file=/var/www/html/wp-config.php
+
+mkdir -p /config /var/www/html
+
+if [ -e "$config_file" ]; then
+    if [ ! -s "$config_file" ]; then
+        echo "The configured /config/wp-config.php file is empty." >&2
+        exit 1
+    fi
+    cp "$config_file" "$runtime_config_file"
+elif [ -s "$runtime_config_file" ]; then
+    cp "$runtime_config_file" "$config_file"
+else
+    php -r '
+$template = file_get_contents("/usr/src/wordpress/wp-config-docker.php");
+if ($template === false) {
+    fwrite(STDERR, "Unable to read the WordPress config template.\n");
+    exit(1);
+}
+$template = preg_replace_callback(
+    "/put your unique phrase here/",
+    function () { return bin2hex(random_bytes(32)); },
+    $template
+);
+if ($template === null || file_put_contents("/config/wp-config.php", $template) === false) {
+    fwrite(STDERR, "Unable to create /config/wp-config.php.\n");
+    exit(1);
+}
+'
+    cp "$config_file" "$runtime_config_file"
+fi
+
+exec /usr/local/bin/docker-entrypoint.sh "$@"
