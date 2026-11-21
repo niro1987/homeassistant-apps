@@ -1,10 +1,10 @@
-# Example Home Assistant app repository
+# Home Assistant Apps by Niels
 
 This repository can be used as a "blueprint" for app development to help you get started.
 
 Apps documentation: <https://contributors.home-assistant.io/apps/>
 
-[![Open your Home Assistant instance and show the app store with a specific repository URL pre-filled.](https://my.home-assistant.io/badges/supervisor_store.svg)](https://my.home-assistant.io/redirect/supervisor_store/?repository_url=https%3A%2F%2Fgithub.com%2Fhome-assistant%2Fapps-example)
+[![Open your Home Assistant instance and show the add app repository dialog with a specific repository URL pre-filled.](https://my.home-assistant.io/badges/supervisor_add_addon_repository.svg)](https://my.home-assistant.io/redirect/supervisor_add_addon_repository/?repository_url=https%3A%2F%2Fgithub.com%2Fniro1987%2Fhomeassistant-apps)
 
 ## Apps
 
