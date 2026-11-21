@@ -1,5 +1,5 @@
 name: WordPress
-version: "1.0.1"
+version: "1.0.2"
 slug: wordpress
 description: Self-hosted WordPress website
 url: "https://github.com/niro1987/homeassistant-apps/tree/main/wordpress"
@@ -9,6 +9,11 @@ arch:
 legacy: true
 services:
   - mysql:need
+ingress: true
+ingress_port: 80
+ingress_stream: true
+panel_icon: mdi:wordpress
+panel_title: WordPress
 map:
   - type: app_config
     read_only: false
@@ -18,7 +23,14 @@ ports:
   80/tcp: 8080
 ports_description:
   80/tcp: WordPress web interface
-webui: "http://[HOST]:[PORT:80]"
+environment:
+  WORDPRESS_CONFIG_EXTRA: >-
+    if (isset($_SERVER["HTTP_X_INGRESS_PATH"], $_SERVER["HTTP_HOST"])) {
+      $wordpress_ingress_scheme = ((!empty($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] !== "off") || (isset($_SERVER["HTTP_X_FORWARDED_PROTO"]) && strpos($_SERVER["HTTP_X_FORWARDED_PROTO"], "https") !== false)) ? "https" : "http";
+      $wordpress_ingress_url = $wordpress_ingress_scheme . "://" . $_SERVER["HTTP_HOST"] . rtrim($_SERVER["HTTP_X_INGRESS_PATH"], "/");
+      define("WP_HOME", $wordpress_ingress_url);
+      define("WP_SITEURL", $wordpress_ingress_url);
+    }
 options:
   WORDPRESS_DB_HOST: core-mariadb
   WORDPRESS_DB_NAME: wordpress

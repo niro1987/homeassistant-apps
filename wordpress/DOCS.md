@@ -22,8 +22,19 @@ Database values configured in the app are read from environment variables by
 the default config file. You can also edit the PHP file directly to add custom
 WordPress settings.
 
+## Open WordPress in Home Assistant
+
+Ingress is enabled, so use **Open Web UI** on the app page or enable WordPress
+in the Home Assistant sidebar. WordPress URLs use Home Assistant's ingress
+path, including admin and login redirects. The direct host port `8080` remains
+available for external access.
+
+If you customize `wp-config.php`, keep its `WORDPRESS_CONFIG_EXTRA` evaluation
+in place and avoid hard-coding `WP_HOME` or `WP_SITEURL`; those constants are
+set dynamically for ingress requests.
+
 ## Website files
 
 WordPress core and site files are stored in the app's persistent data folder.
-The web interface is available on port `8080` by default. Change the host port
-in the app's Network settings if it conflicts with another service.
+The direct web interface is available on port `8080` by default. Change the
+host port in the app's Network settings if it conflicts with another service.
