@@ -1,12 +1,11 @@
 name: WordPress
-version: "1.0.0"
+version: "1.0.1"
 slug: wordpress
 description: Self-hosted WordPress website
 url: "https://github.com/niro1987/homeassistant-apps/tree/main/wordpress"
 arch:
   - aarch64
   - amd64
-init: true
 legacy: true
 services:
   - mysql:need
